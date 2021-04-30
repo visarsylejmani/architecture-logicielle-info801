@@ -12,7 +12,7 @@ Sylejmani Visar et Mahri Hamza
 ---
 #### Voici une illustration
 ![alt Architecture](assets/architecture.png)
-### Chaque client est traité sous un thread, quant à la communication Client/Serveur , on utilise **socket** , une **librairie** python.<br> La communication se fait donc avec un HEADER ayant besoin de savoir combien d'octets on va recevoir , on envoit donc d'abords le nombre d'octets
+#### Chaque client est traité sous un thread, quant à la communication Client/Serveur , on utilise **socket** , une **librairie** python.<br> La communication se fait donc avec un HEADER ayant besoin de savoir combien d'octets on va recevoir , on envoit donc d'abords le nombre d'octets
 ### Envoit : 
 
 `msg = "status,lumiereRouge"` # Le message à envoyer <br/>
