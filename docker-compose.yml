@@ -1,0 +1,65 @@
+version: '3.0'
+
+services:
+    mariadb:
+        image: mariadb
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+            MYSQL_DATABASE: info801
+        volumes:
+            - db-data:/var/lib/mysql
+
+    server:
+        build:
+            context: ./server
+            dockerfile: ./Dockerfile
+        depends_on: 
+            - mariadb
+
+    polytech:
+        build:
+            context: ./polytech
+            dockerfile: ./Dockerfile
+        depends_on: 
+            - server
+
+    polemontagne:
+        build:
+            context: ./polemontagne
+            dockerfile: ./Dockerfile
+        depends_on: 
+            - server
+
+    labo:
+        build:
+            context: ./labo
+            dockerfile: ./Dockerfile
+        depends_on:    
+            - server   
+
+    bibliotheque:
+        build:
+            context: ./bibliotheque
+            dockerfile: ./Dockerfile
+        depends_on:    
+            - server   
+    
+    amphis:
+        build:
+            context: ./amphis
+            dockerfile: ./Dockerfile
+        depends_on:
+            - server   
+                                                                               
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+        depends_on:
+            - mariadb
+volumes:
+    db-data:
